@@ -22,7 +22,6 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
     private EditText mEtEmail, mEtPw;
-    private Button mBtnSigup;
 
 
     @Override
@@ -32,14 +31,13 @@ public class SignupActivity extends AppCompatActivity {
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         mDatabaseRef = database.getReference("shoppingmallDemo");
 
 
         mEtEmail = findViewById(R.id.et_email);
         mEtPw = findViewById(R.id.et_pw);
-        mBtnSigup = findViewById(R.id.btn_register);
+        Button mBtnSigup = findViewById(R.id.btn_register);
 
 
         mBtnSigup.setOnClickListener(new View.OnClickListener() {
