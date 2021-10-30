@@ -1,7 +1,7 @@
 package com.wookingwoo.shoppingmalldemo;
 
 public class UserAccount {
-    private String idToken; // Firebase uid
+    private String idToken; // Firebase UID
     private String emailId;
     private String password;
 
