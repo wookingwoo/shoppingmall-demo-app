@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "277487445249",
+    "project_id": "shoppingmalldemo-a01b2",
+    "storage_bucket": "shoppingmalldemo-a01b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277487445249:android:f77b3c34a8c99912fba700",
+        "android_client_info": {
+          "package_name": "com.wookingwoo.shoppingmalldemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277487445249-jm8n74famco8s573ge6jcfqapevf7ai8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmySbPXW9NbKR7W0GNGV9bf3Z4kzbjs9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277487445249-jm8n74famco8s573ge6jcfqapevf7ai8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
