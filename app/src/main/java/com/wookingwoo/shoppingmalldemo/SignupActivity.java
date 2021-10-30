@@ -3,6 +3,7 @@ package com.wookingwoo.shoppingmalldemo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -66,6 +67,9 @@ public class SignupActivity extends AppCompatActivity {
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
 
                             Toast.makeText(SignupActivity.this, "Complete Sign up", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(SignupActivity.this, SigninActivity.class);
+                            startActivity(intent);
 
                         } else {
                             Toast.makeText(SignupActivity.this, "Signup error", Toast.LENGTH_SHORT).show();
