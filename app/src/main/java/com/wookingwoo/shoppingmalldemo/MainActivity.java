@@ -72,9 +72,10 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+
 //        로그인 된상태
         else {
-            btn_accountInfo.setText("접속자 정보:\n" + currentUser.getEmail());
+            btn_accountInfo.setText("[로그아웃하려면 클릭]\n" + currentUser.getEmail());
 
 
             btn_accountInfo.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
         ilAdapter.notifyDataSetChanged(); // listview 갱신
 
 
-
         FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
 
         // fab_add에 대한 이벤트 처리.
@@ -145,32 +145,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-//        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view,
-//                                           int position, long id) {
-//                myList.remove(position);
-//                ilAdapter.notifyDataSetChanged();
-//                // 이벤트 처리 종료 , 여기만 리스너 적용시키고 싶으면 true , 아니면 false
-//                return true;
-//            }
-//        });
-
-
-
-
-
-
-
-
-
 
 
     }

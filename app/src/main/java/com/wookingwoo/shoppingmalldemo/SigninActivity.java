@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,6 +29,17 @@ public class SigninActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            Toast.makeText(getBaseContext(), "로그인이 되어있습니다. 메인페이지로 이동합니다.", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+            startActivity(intent);
+
+        }
 
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -87,5 +99,7 @@ public class SigninActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 }
