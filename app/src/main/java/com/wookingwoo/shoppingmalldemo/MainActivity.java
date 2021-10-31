@@ -11,16 +11,23 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
+
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +129,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        listView = (ListView) findViewById(R.id.listView);
+
+        List<String> itemData = new ArrayList<>();
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemData);
+
+        listView.setAdapter(adapter);
+
+        itemData.add("아이템1");
+        itemData.add("아이템2");
+        itemData.add("아이템3");
+        itemData.add("아이템4");
+        itemData.add("아이템5");
+        itemData.add("아이템6");
+        itemData.add("아이템7");
+        itemData.add("아이템8");
+        itemData.add("아이템9");
+        itemData.add("아이템10");
+        itemData.add("아이템11");
+        itemData.add("아이템12");
+        adapter.notifyDataSetChanged();
 
 
     }

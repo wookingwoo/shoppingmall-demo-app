@@ -28,10 +28,7 @@ public class AddItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
-
         findViewById(R.id.btn_registerItem).setOnClickListener(onClickListener);
-
-
     }
 
 
@@ -54,25 +51,16 @@ public class AddItemActivity extends AppCompatActivity {
 
 
         if (title.length() == 0) {
-
             startToast("상품명을 입력해주세요.");
-
         }
-
 
 // 로그인되지 않은 상태
         else if (currentUser == null) {
-
             startToast("먼저 회원가입을 해주세요..");
 
-
         } else {
-
-
             RegisterItems writeInfo = new RegisterItems(title, currentUser.getUid());
             uploader(writeInfo);
-
-
         }
 
     }
