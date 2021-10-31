@@ -3,15 +3,12 @@ package com.wookingwoo.shoppingmalldemo;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,9 +16,6 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -122,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ListView lv = findViewById(R.id.listView);
-        ItemList ilAdapter = new ItemList();
+        ItemListAdopter ilAdapter = new ItemListAdopter();
 
         lv.setAdapter(ilAdapter);
 
@@ -153,7 +147,31 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
+
+//        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view,
+//                                           int position, long id) {
+//                myList.remove(position);
+//                ilAdapter.notifyDataSetChanged();
+//                // 이벤트 처리 종료 , 여기만 리스너 적용시키고 싶으면 true , 아니면 false
+//                return true;
+//            }
+//        });
+
+
+
+
+
+
+
+
+
+
+
     }
-
-
 }

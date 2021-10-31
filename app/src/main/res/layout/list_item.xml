@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -8,15 +9,26 @@
         android:id="@+id/iv_itemImg"
         android:layout_width="200px"
         android:layout_height="200px"
+        android:layout_gravity="center"
         android:padding="15px" />
 
     <TextView
         android:id="@+id/tv_itemTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
         android:text="상품명" />
+
+    <ImageButton
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#00ff0000"
+
+        android:includeFontPadding="false"
+        app:srcCompat="@android:drawable/ic_delete" />
 
 
 </LinearLayout>

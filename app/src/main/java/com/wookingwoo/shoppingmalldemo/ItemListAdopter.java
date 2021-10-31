@@ -6,12 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
-public class ItemList extends BaseAdapter {
+public class ItemListAdopter extends BaseAdapter {
 
 
     ArrayList<listItem> itemDatas = new ArrayList<>();
@@ -51,6 +55,28 @@ public class ItemList extends BaseAdapter {
 
         tv.setText(itemData.getItemTitle());
         iv.setImageDrawable(itemData.getD());
+
+
+
+
+
+        ImageButton btn_delete = (ImageButton)view.findViewById(R.id.btn_delete);
+
+
+        // 리스트 아이템 삭제
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemDatas.remove(i);
+                notifyDataSetChanged();
+            }
+        });
+
+
+
+
+
+
 
         return view;
     }
