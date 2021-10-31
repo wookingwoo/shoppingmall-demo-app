@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,6 +15,9 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -132,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
 
+        /*
+
         // fab_add에 대한 이벤트 처리.
         fab_add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -143,6 +147,43 @@ public class MainActivity extends AppCompatActivity {
                 ilAdapter.addItem("상품추가", ContextCompat.getDrawable(getBaseContext(), R.drawable.shopping_cart));
                 ilAdapter.notifyDataSetChanged(); // listview 갱신
 
+            }
+        });
+
+
+*/
+
+
+        final String[] menuArray = {"cake", "chicken", "hamburger", "meat", "pasta", "pizza", "sandwich"};
+
+
+        Map<String, Integer> menuImgMap = new HashMap<>();
+        menuImgMap.put("cake", R.drawable.cake_img);
+        menuImgMap.put("chicken", R.drawable.chicken_img);
+        menuImgMap.put("hamburger", R.drawable.hamburger_img);
+        menuImgMap.put("meat", R.drawable.meat_img);
+        menuImgMap.put("pasta", R.drawable.pasta_img);
+        menuImgMap.put("pizza", R.drawable.pizza_img);
+        menuImgMap.put("sandwich", R.drawable.sandwich_img);
+
+        fab_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+
+                dlg.setTitle("상품 추가");
+                dlg.setIcon(R.drawable.shopping_cart);
+                dlg.setItems(menuArray, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //  array[which]: 클릭한 값
+                        Toast.makeText(getApplicationContext(), menuArray[which], Toast.LENGTH_LONG).show();
+                        ilAdapter.addItem(menuArray[which], ContextCompat.getDrawable(getBaseContext(), menuImgMap.get(menuArray[which])));
+                        ilAdapter.notifyDataSetChanged(); // listview 갱신
+
+                    }
+                });
+                dlg.show();
             }
         });
 
