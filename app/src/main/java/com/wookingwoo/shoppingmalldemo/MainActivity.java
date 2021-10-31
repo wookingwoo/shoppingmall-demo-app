@@ -1,5 +1,6 @@
 package com.wookingwoo.shoppingmalldemo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -7,15 +8,20 @@ import androidx.core.content.ContextCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -134,25 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
 
-        /*
-
-        // fab_add에 대한 이벤트 처리.
-        fab_add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
-//                startActivity(intent);
-
-
-                // 아이템 추가
-                ilAdapter.addItem("상품추가", ContextCompat.getDrawable(getBaseContext(), R.drawable.shopping_cart));
-                ilAdapter.notifyDataSetChanged(); // listview 갱신
-
-            }
-        });
-
-
-*/
-
 
         final String[] menuArray = {"cake", "chicken", "hamburger", "meat", "pasta", "pizza", "sandwich"};
 
@@ -180,6 +167,32 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), menuArray[which], Toast.LENGTH_LONG).show();
                         ilAdapter.addItem(menuArray[which], ContextCompat.getDrawable(getBaseContext(), menuImgMap.get(menuArray[which])));
                         ilAdapter.notifyDataSetChanged(); // listview 갱신
+
+
+// FirebaseFirestore 저장 시작
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+
+
+                        Map<String, Object> cartItems = new HashMap<>();
+                        cartItems.put("items", Arrays.asList("cake", "chicken", 3));
+
+
+                        db.collection("ShoppingCart").document(firebaseUser.getUid())
+                                .set(cartItems)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("Add-item-firesotre", "DocumentSnapshot successfully written!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w("Add-item-firesotre", "Error writing document", e);
+                                    }
+                                });
+
 
                     }
                 });
