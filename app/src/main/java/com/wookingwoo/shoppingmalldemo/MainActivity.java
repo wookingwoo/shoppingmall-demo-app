@@ -131,29 +131,41 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        listView = (ListView) findViewById(R.id.listView);
+//        listView = (ListView) findViewById(R.id.listView);
+//
+//        List<String> itemData = new ArrayList<>();
+//
+//
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemData);
+//
+//        listView.setAdapter(adapter);
+//
+//        itemData.add("아이템1");
+//        itemData.add("아이템2");
+//        itemData.add("아이템3");
+//        itemData.add("아이템4");
+//        itemData.add("아이템5");
+//        itemData.add("아이템6");
+//        itemData.add("아이템7");
+//        itemData.add("아이템8");
+//        itemData.add("아이템9");
+//        itemData.add("아이템10");
+//        itemData.add("아이템11");
+//        itemData.add("아이템12");
+//        adapter.notifyDataSetChanged();
 
-        List<String> itemData = new ArrayList<>();
 
+        ListView lv = findViewById(R.id.listView);
+        ItemList ilAdapter = new ItemList();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemData);
+        lv.setAdapter(ilAdapter);
 
-        listView.setAdapter(adapter);
+        ilAdapter.addItem("상품1", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
+        ilAdapter.addItem("상품2", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
+        ilAdapter.addItem("상품3", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
+        ilAdapter.addItem("상품4", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
+        ilAdapter.addItem("상품5", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
 
-        itemData.add("아이템1");
-        itemData.add("아이템2");
-        itemData.add("아이템3");
-        itemData.add("아이템4");
-        itemData.add("아이템5");
-        itemData.add("아이템6");
-        itemData.add("아이템7");
-        itemData.add("아이템8");
-        itemData.add("아이템9");
-        itemData.add("아이템10");
-        itemData.add("아이템11");
-        itemData.add("아이템12");
-        adapter.notifyDataSetChanged();
-
-
+        
     }
 }
