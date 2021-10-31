@@ -27,7 +27,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabaseRef;
-    private EditText mEtEmail, mEtPw, mETConfirmPW;
+    private EditText mEtEmail, mEtPw, mETConfirmPW, mETUserName;
 
 
     @Override
@@ -44,6 +44,7 @@ public class SignupActivity extends AppCompatActivity {
         mEtEmail = findViewById(R.id.et_email);
         mEtPw = findViewById(R.id.et_pw);
         mETConfirmPW = findViewById(R.id.et_confirmPW);
+        mETUserName = findViewById(R.id.et_userName);
         Button mBtnSigup = findViewById(R.id.btn_register);
 
 
@@ -54,6 +55,7 @@ public class SignupActivity extends AppCompatActivity {
                 String strEmail = mEtEmail.getText().toString();
                 String strPw = mEtPw.getText().toString();
                 String strConfirmPW = mETConfirmPW.getText().toString();
+                String strUserName = mETUserName.getText().toString();
 
 
                 if (strEmail.length() == 0) {
@@ -71,6 +73,9 @@ public class SignupActivity extends AppCompatActivity {
                 } else if (!strPw.equals(strConfirmPW)) {
                     Toast.makeText(SignupActivity.this, "비밀번호 확인이 다릅니다.", Toast.LENGTH_SHORT).show();
 
+                } else if (strUserName.length() == 0) {
+                    Toast.makeText(SignupActivity.this, "Input your name", Toast.LENGTH_SHORT).show();
+
                 } else {
                     // 회원가입 시작
                     mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPw).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
@@ -85,6 +90,8 @@ public class SignupActivity extends AppCompatActivity {
                                 account.setIdToken(firebaseUser.getUid());
                                 account.setEmailId(firebaseUser.getEmail());
                                 account.setPassword(strPw);
+                                account.setUserName(strUserName);
+
 
                                 mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
 
