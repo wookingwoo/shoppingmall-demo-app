@@ -14,13 +14,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class SignupActivity extends AppCompatActivity {
@@ -93,7 +97,27 @@ public class SignupActivity extends AppCompatActivity {
                                 account.setUserName(strUserName);
 
 
-                                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                                // fire sotre 에 추가
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                                db.collection("UserAccount").document(firebaseUser.getUid()).set(account)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d("firestore-user-account", "DocumentSnapshot successfully written!");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("firestore-user-account", "Error writing document", e);
+                                            }
+                                        });
+
+
+                                // realtime database 에 추가
+//                                mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+
 
                                 Toast.makeText(SignupActivity.this, "Complete Sign up", Toast.LENGTH_SHORT).show();
 
