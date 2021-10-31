@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -112,6 +113,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+
+        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
+        fab_add.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
