@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".SignupActivity">
 
+    <Button
+        android:id="@+id/btn_goSignin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/white"
+
+        android:text="Sign in to an existing account "
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btn_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/et_email"
         android:layout_width="0dp"

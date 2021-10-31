@@ -73,13 +73,10 @@ public class SignupActivity extends AppCompatActivity {
 
                 } else {
                     // 회원가입 시작
-
-
                     mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPw).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             // 회원가입 성공할때
-
                             if (task.isSuccessful()) {
                                 FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -126,6 +123,18 @@ public class SignupActivity extends AppCompatActivity {
                     });
 
                 }
+            }
+        });
+
+
+        Button btnGoSignin = findViewById(R.id.btn_goSignin);
+
+        btnGoSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignupActivity.this, SigninActivity.class);
+                startActivity(intent);
+
             }
         });
 
