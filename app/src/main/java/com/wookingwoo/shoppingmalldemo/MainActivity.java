@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
 
-    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,39 +121,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
-        fab_add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-//        listView = (ListView) findViewById(R.id.listView);
-//
-//        List<String> itemData = new ArrayList<>();
-//
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemData);
-//
-//        listView.setAdapter(adapter);
-//
-//        itemData.add("아이템1");
-//        itemData.add("아이템2");
-//        itemData.add("아이템3");
-//        itemData.add("아이템4");
-//        itemData.add("아이템5");
-//        itemData.add("아이템6");
-//        itemData.add("아이템7");
-//        itemData.add("아이템8");
-//        itemData.add("아이템9");
-//        itemData.add("아이템10");
-//        itemData.add("아이템11");
-//        itemData.add("아이템12");
-//        adapter.notifyDataSetChanged();
-
-
         ListView lv = findViewById(R.id.listView);
         ItemList ilAdapter = new ItemList();
 
@@ -166,6 +132,28 @@ public class MainActivity extends AppCompatActivity {
         ilAdapter.addItem("상품4", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
         ilAdapter.addItem("상품5", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
 
-        
+        ilAdapter.notifyDataSetChanged(); // listview 갱신
+
+
+
+        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
+
+        // fab_add에 대한 이벤트 처리.
+        fab_add.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
+//                startActivity(intent);
+
+
+                // 아이템 추가
+                ilAdapter.addItem("상품추가", ContextCompat.getDrawable(getBaseContext(), R.drawable.shopping_cart));
+                ilAdapter.notifyDataSetChanged(); // listview 갱신
+
+            }
+        });
+
+
     }
+
+
 }
