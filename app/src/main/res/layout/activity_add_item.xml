@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_registerItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="확인"
