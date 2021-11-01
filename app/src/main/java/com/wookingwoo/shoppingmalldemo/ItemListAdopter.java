@@ -82,6 +82,7 @@ public class ItemListAdopter extends BaseAdapter {
             public void onClick(View view) {
                 itemDatas.remove(i);
                 notifyDataSetChanged();
+                uploadDB(); // Firestore에 갱신
             }
         });
 

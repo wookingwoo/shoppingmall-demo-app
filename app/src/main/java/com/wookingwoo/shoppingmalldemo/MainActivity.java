@@ -21,18 +21,23 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
-
+    private String fb_uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,25 +133,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        ListView lv = findViewById(R.id.listView);
-        ItemListAdopter ilAdapter = new ItemListAdopter();
-
-        lv.setAdapter(ilAdapter);
-
-
-        ilAdapter.addItem("상품1", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
-        ilAdapter.addItem("상품2", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
-        ilAdapter.addItem("상품3", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
-        ilAdapter.addItem("상품4", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
-        ilAdapter.addItem("상품5", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
-
-
-        ilAdapter.notifyDataSetChanged(); // listview 갱신
-        ilAdapter.uploadDB(); // Firestore에 갱신
-
-
-        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
-
 
         final String[] menuArray = {"cake", "chicken", "hamburger", "meat", "pasta", "pizza", "sandwich"};
 
@@ -159,6 +145,107 @@ public class MainActivity extends AppCompatActivity {
         menuImgMap.put("pasta", R.drawable.pasta_img);
         menuImgMap.put("pizza", R.drawable.pizza_img);
         menuImgMap.put("sandwich", R.drawable.sandwich_img);
+
+
+
+
+
+        ListView lv = findViewById(R.id.listView);
+        ItemListAdopter ilAdapter = new ItemListAdopter();
+
+        lv.setAdapter(ilAdapter);
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
+
+
+        if (firebaseUser != null) {
+
+            fb_uid = "3CcUTGI5dKQaSuuSUoquigrTRQG3"; // guest UID
+        } else {
+            fb_uid = firebaseUser.getUid();
+        }
+
+        DocumentReference docRef = db.collection("ShoppingCart").document(fb_uid);
+
+// Source can be CACHE, SERVER, or DEFAULT.
+        Source source = Source.CACHE;
+
+// Get the document, forcing the SDK to use the offline cache
+        docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    // Document found in the offline cache
+                    DocumentSnapshot document = task.getResult();
+                    Log.d("get-cart-item-firestore", "Cached document data: " + document.getData());
+
+
+                    Object getItemsFS = document.getData().get("items");
+
+                    Log.d("get-cart-item-firestore", "11111->" + getItemsFS);
+
+
+                    for (Object i : Arrays.asList(getItemsFS)) {
+                        Log.d("get-cart-item-firestore", "22222->" + i);
+
+
+                    }
+
+
+                    List<String> getCartItemFS = (List<String>) document.get("items");
+                    Log.d("get-cart-item-firestore", "33333->" + getCartItemFS);
+
+                    int nullCount = 0;
+
+                    for (String s : getCartItemFS) {
+                        if (s != null && !s.equals("null")) {
+                            Log.d("get-cart-item-firestore", "44444->" + s);
+                            ilAdapter.addItem(s, ContextCompat.getDrawable(MainActivity.this, menuImgMap.get(s)));
+                            ilAdapter.notifyDataSetChanged(); // listview 갱신
+
+
+                        } else {
+                            nullCount++;
+                        }
+
+                    }
+
+
+                    if (nullCount >= 500) {
+                        ilAdapter.addItem("기본 상품1", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                        ilAdapter.addItem("기본 상품2", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                        ilAdapter.addItem("기본 상품3", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                        ilAdapter.addItem("기본 상품4", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                        ilAdapter.addItem("기본 상품5", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                        ilAdapter.notifyDataSetChanged(); // listview 갱신
+
+                    }
+
+
+                } else {
+                    Log.d("get-cart-item-firestore", "Cached get failed: ", task.getException());
+
+                    ilAdapter.addItem("기본 상품1", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                    ilAdapter.addItem("기본 상품2", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                    ilAdapter.addItem("기본 상품3", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                    ilAdapter.addItem("기본 상품4", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                    ilAdapter.addItem("기본 상품5", ContextCompat.getDrawable(MainActivity.this, R.drawable.shopping_cart));
+                    ilAdapter.notifyDataSetChanged(); // listview 갱신
+
+
+                }
+            }
+        });
+
+
+        ilAdapter.notifyDataSetChanged(); // listview 갱신
+//        ilAdapter.uploadDB(); // Firestore에 갱신
+
+
+        FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
+
 
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
