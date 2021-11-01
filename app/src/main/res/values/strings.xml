@@ -20,4 +20,7 @@
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="option">option</string>
     <string name="enter_your_address">Enter your address</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="privacy_label">개인정보 처리방침에 동의합니다.</string>
 </resources>

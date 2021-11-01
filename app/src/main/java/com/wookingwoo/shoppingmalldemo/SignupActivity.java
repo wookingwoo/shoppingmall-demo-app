@@ -10,7 +10,9 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,6 +64,9 @@ public class SignupActivity extends AppCompatActivity {
                 String strUserName = mETUserName.getText().toString();
 
 
+                RadioButton rb_accept = (RadioButton) findViewById(R.id.rb_accept);
+
+
                 if (strEmail.length() == 0) {
                     Toast.makeText(SignupActivity.this, "Input email", Toast.LENGTH_SHORT).show();
 
@@ -79,6 +84,10 @@ public class SignupActivity extends AppCompatActivity {
 
                 } else if (strUserName.length() == 0) {
                     Toast.makeText(SignupActivity.this, "Input your name", Toast.LENGTH_SHORT).show();
+
+                } else if (!rb_accept.isChecked()) {
+
+                    Toast.makeText(SignupActivity.this, "개인정보 처리방침에 동의하지 않으면 사용할 수 없습니다.", Toast.LENGTH_SHORT).show();
 
                 } else {
                     // 회원가입 시작

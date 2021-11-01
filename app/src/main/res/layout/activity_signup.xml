@@ -163,26 +163,32 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:text="개인정보 처리방침에 동의합니다."
+                android:text="@string/privacy_label"
                 android:textSize="20sp" />
 
             <RadioGroup
+                android:id="@+id/rg_privacyCheck"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:layout_marginRight="40dp">
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Accept" />
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
 
                 <RadioButton
                     android:id="@+id/radioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Decline" />
+                    android:layout_marginRight="40dp"
+                    android:text="@string/decline" />
+
+                <RadioButton
+                    android:id="@+id/rb_accept"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:text="@string/accept" />
+
+
             </RadioGroup>
 
 
