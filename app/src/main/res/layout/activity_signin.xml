@@ -21,7 +21,7 @@
         android:id="@+id/et_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:ems="10"
         android:hint="@string/enter_your_email"
         android:inputType="textEmailAddress"
@@ -34,7 +34,7 @@
         android:id="@+id/et_pw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:hint="@string/enter_your_password"
         android:inputType="textPassword"
@@ -48,10 +48,11 @@
         android:id="@+id/btn_signin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:text="@string/sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
 
@@ -59,31 +60,30 @@
         android:id="@+id/btn_signup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
 
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/white"
         android:text="@string/create_account"
 
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btn_signin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_gomain" />
 
     <Button
         android:id="@+id/btn_gomain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="60dp"
         android:background="@android:color/transparent"
-        android:backgroundTint="@android:color/white"
 
+        android:backgroundTint="@android:color/white"
         android:text="@string/guest_login"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btn_signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin" />
 </androidx.constraintlayout.widget.ConstraintLayout>
