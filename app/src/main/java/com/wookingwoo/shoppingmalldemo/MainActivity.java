@@ -14,12 +14,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -129,13 +133,16 @@ public class MainActivity extends AppCompatActivity {
 
         lv.setAdapter(ilAdapter);
 
+
         ilAdapter.addItem("상품1", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
         ilAdapter.addItem("상품2", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
         ilAdapter.addItem("상품3", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
         ilAdapter.addItem("상품4", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
         ilAdapter.addItem("상품5", ContextCompat.getDrawable(this, R.drawable.shopping_cart));
 
+
         ilAdapter.notifyDataSetChanged(); // listview 갱신
+        ilAdapter.uploadDB(); // Firestore에 갱신
 
 
         FloatingActionButton fab_add = (FloatingActionButton) findViewById(R.id.fab_add);
@@ -167,31 +174,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), menuArray[which], Toast.LENGTH_LONG).show();
                         ilAdapter.addItem(menuArray[which], ContextCompat.getDrawable(getBaseContext(), menuImgMap.get(menuArray[which])));
                         ilAdapter.notifyDataSetChanged(); // listview 갱신
-
-
-// FirebaseFirestore 저장 시작
-                        FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser();
-
-
-                        Map<String, Object> cartItems = new HashMap<>();
-                        cartItems.put("items", Arrays.asList("cake", "chicken", 3));
-
-
-                        db.collection("ShoppingCart").document(firebaseUser.getUid())
-                                .set(cartItems)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Log.d("Add-item-firesotre", "DocumentSnapshot successfully written!");
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.w("Add-item-firesotre", "Error writing document", e);
-                                    }
-                                });
+                        ilAdapter.uploadDB(); // Firestore에 갱신
 
 
                     }
