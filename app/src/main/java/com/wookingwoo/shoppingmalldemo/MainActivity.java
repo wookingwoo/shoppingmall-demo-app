@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         final String[] menuArray = {"cake", "chicken", "hamburger", "meat", "pasta", "pizza", "sandwich"};
 
 
@@ -145,9 +144,6 @@ public class MainActivity extends AppCompatActivity {
         menuImgMap.put("pasta", R.drawable.pasta_img);
         menuImgMap.put("pizza", R.drawable.pizza_img);
         menuImgMap.put("sandwich", R.drawable.sandwich_img);
-
-
-
 
 
         ListView lv = findViewById(R.id.listView);
@@ -164,7 +160,17 @@ public class MainActivity extends AppCompatActivity {
 
             fb_uid = "3CcUTGI5dKQaSuuSUoquigrTRQG3"; // guest UID
         } else {
-            fb_uid = firebaseUser.getUid();
+
+
+            try {
+                fb_uid = firebaseUser.getUid();
+
+            } catch (Exception e) {
+                fb_uid = "3CcUTGI5dKQaSuuSUoquigrTRQG3"; // guest UID
+
+            }
+
+
         }
 
         DocumentReference docRef = db.collection("ShoppingCart").document(fb_uid);
@@ -258,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //  array[which]: 클릭한 값
-                        Toast.makeText(getApplicationContext(), menuArray[which], Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), menuArray[which]+"를 추가했습니다.", Toast.LENGTH_LONG).show();
                         ilAdapter.addItem(menuArray[which], ContextCompat.getDrawable(getBaseContext(), menuImgMap.get(menuArray[which])));
                         ilAdapter.notifyDataSetChanged(); // listview 갱신
                         ilAdapter.uploadDB(); // Firestore에 갱신

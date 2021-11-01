@@ -116,7 +116,27 @@ public class ItemListAdopter extends BaseAdapter {
         cartItems.put("items", Arrays.asList(arrayDB));
 
 
-        db.collection("ShoppingCart").document(firebaseUser.getUid())
+        String fb_uid;
+        if (firebaseUser != null) {
+
+            fb_uid = "3CcUTGI5dKQaSuuSUoquigrTRQG3"; // guest UID
+        } else {
+
+
+            try {
+                fb_uid = firebaseUser.getUid();
+
+            } catch (Exception e) {
+                fb_uid = "3CcUTGI5dKQaSuuSUoquigrTRQG3"; // guest UID
+
+            }
+
+
+        }
+
+
+
+        db.collection("ShoppingCart").document(fb_uid)
                 .set(cartItems)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

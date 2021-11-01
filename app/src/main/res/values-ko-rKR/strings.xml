@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">ShoppingmallDemo</string>
     <string name="sign_up">회원가입하기</string>
-    <string name="pw_lenth_6">6글자 이상 암호 입력</string>
+    <string name="pw_lenth_6">6글자 이상 암호 입력 (문자, 숫자, 특수문자를 모두 포함한 8~15자)</string>
     <string name="email_hint">이메일 형식에 맞춰 입력해주세요.</string>
     <string name="trade_name">상품명</string>
     <string name="confirm_pw">비밀번호 확인</string>
