@@ -3,7 +3,7 @@ package com.wookingwoo.shoppingmalldemo;
 public class UserAccount {
     private String idToken; // Firebase UID
     private String emailId;
-    private String password;
+    private String password; // test 목적 코드 (제거해도됨)
     private String userName;
 
     public UserAccount() {

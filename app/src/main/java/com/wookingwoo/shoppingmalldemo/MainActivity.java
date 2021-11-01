@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 // 로기인되지 않은 상태
         if (currentUser == null) {
-            btn_accountInfo.setText(R.string.sign_in);
+            btn_accountInfo.setText(R.string.sign_up);
             btn_accountInfo.setBackgroundColor(btn_accountInfo.getContext().getResources().getColor(R.color.common_google_signin_btn_text_dark_default));
             btn_accountInfo.setBackgroundTintList(btn_accountInfo.getResources().getColorStateList(R.color.common_google_signin_btn_text_dark_default));
 
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setTitle(R.string.sign_in);
+                    builder.setTitle(R.string.sign_up);
                     builder.setMessage("회원가입 하시겠습니까?");
                     builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
                         public void onClick(
