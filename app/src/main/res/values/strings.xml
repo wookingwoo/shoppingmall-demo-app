@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">ShoppingmallDemo</string>
     <string name="sign_up">Sign Up</string>
+    <string name="shopping_cart">shopping cart</string>
+    <string name="account_info" translatable="false">UserName\n(AccountEmail)</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create account</string>
+    <string name="guest_login">Guest Login (Start without signing up)</string>
+    <string name="input_user_name">input user name</string>
+    <string name="sign_in_to_an_existing_account">Sign in to an existing account</string>
+    <string name="pw_lenth_6">Enter a 6-letter or more password.</string>
+    <string name="confirm_pw">confirm password</string>
+    <string name="email_hint">Please enter according to the email format.</string>
+    <string name="trade_name">trade name</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="enter_your_name">Enter your name</string>
 </resources>

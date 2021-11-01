@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        로그인 된상태
         else {
-            btn_accountInfo.setText("[로그아웃하려면 클릭]\n" + currentUser.getEmail());
+            btn_accountInfo.setText("[로그아웃하기]\n" + currentUser.getEmail());
 
 
             btn_accountInfo.setOnClickListener(new View.OnClickListener() {

@@ -2,4 +2,18 @@
 <resources>
     <string name="app_name">ShoppingmallDemo</string>
     <string name="sign_up">회원가입하기</string>
+    <string name="pw_lenth_6">6글자 이상 암호 입력</string>
+    <string name="email_hint">이메일 형식에 맞춰 입력해주세요.</string>
+    <string name="trade_name">상품명</string>
+    <string name="confirm_pw">비밀번호 확인</string>
+    <string name="sign_in">로그인</string>
+    <string name="shopping_cart">장바구니</string>
+    <string name="sign_in_to_an_existing_account">이미 계정이 있으신가요? [로그인하기]</string>
+    <string name="input_user_name">사용자 이름을 입력해 주세요.</string>
+    <string name="guest_login">게스트 모드 (회원가입 없이 시작)</string>
+    <string name="create_account">회원가입</string>
+    <string name="enter_your_password">비밀번호 입력</string>
+    <string name="enter_your_email">이메일 입력</string>
+    <string name="confirm_your_password">비밀번호 확인</string>
+    <string name="enter_your_name">사용자 이름 입력</string>
 </resources>
