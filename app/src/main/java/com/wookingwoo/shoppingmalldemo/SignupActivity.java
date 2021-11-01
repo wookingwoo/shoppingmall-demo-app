@@ -1,8 +1,11 @@
 package com.wookingwoo.shoppingmalldemo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -179,5 +182,31 @@ public class SignupActivity extends AppCompatActivity {
         });
 
 
+        Button bt_viewPrivacy = findViewById(R.id.bt_viewPrivacy);
+
+        bt_viewPrivacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this);
+                builder.setTitle(R.string.privacy);
+                builder.setMessage("This app was created as an personal assignment in MobileProgramming class. The back-end was configured using firebase. If there is a problem with the server connection, it may not work normally. The last modified product may not be saved due to BaseAdapter's life cycle problem. For account information, Firebase's Authentication was used, and for product information by account, Firestore Database was used. Don't enter your personal information or password. The source of the image used in the app is Pixabay and follows the Pixabay License.\n\nMade by Jeongheon Woo.");
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getApplicationContext(), ":)", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
+            }
+        });
     }
 }

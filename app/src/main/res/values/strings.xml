@@ -22,5 +22,7 @@
     <string name="enter_your_address">Enter your address</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
-    <string name="privacy_label">개인정보 처리방침에 동의합니다.</string>
+    <string name="privacy_label">I agree with the personal information processing policy.</string>
+    <string name="privacy">Privacy</string>
+    <string name="view_privacy">View privacy</string>
 </resources>

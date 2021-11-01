@@ -62,19 +62,27 @@ public class SigninActivity extends AppCompatActivity {
                 String strEmail = mEtEmail.getText().toString();
                 String strPw = mEtPw.getText().toString();
 
-                mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPw).addOnCompleteListener(SigninActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Intent intent = new Intent(SigninActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish(); // 현재 activity finish
-                        } else {
-                            Toast.makeText(SigninActivity.this, "Login error", Toast.LENGTH_SHORT).show();
 
+                try {
+                    mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPw).addOnCompleteListener(SigninActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish(); // 현재 activity finish
+                            } else {
+                                Toast.makeText(SigninActivity.this, "Login error", Toast.LENGTH_SHORT).show();
+
+                            }
                         }
-                    }
-                });
+                    });
+                } catch (Exception e) {
+                    Toast.makeText(SigninActivity.this, "Login error", Toast.LENGTH_SHORT).show();
+
+                }
+
+
             }
         });
 

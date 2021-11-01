@@ -157,14 +157,32 @@
                 android:layout_height="wrap_content"
                 android:text="@string/option" />
 
-            <TextView
-                android:id="@+id/textView8"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:text="@string/privacy_label"
-                android:textSize="20sp" />
+                >
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/privacy_label"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/bt_viewPrivacy"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@string/view_privacy"
+                    />
+            </LinearLayout>
 
             <RadioGroup
                 android:id="@+id/rg_privacyCheck"
