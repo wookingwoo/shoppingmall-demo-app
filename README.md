@@ -2,16 +2,16 @@
 
 ## introduction
 
-1. Demo video
+### Demo video
    - [Go Youtube](https://youtu.be/8szmXZp9tOo)
-    
-2. Development environment.
+
+### Development environment.
 
 - system image: API 30 (Android 11.0)
 - device: Pixel 4
 
 
-3. Back-End (firebase)
+### Back-End (firebase)
 
 - Account information.: Authentication
 - Product information: Firestore Database
@@ -25,7 +25,7 @@
 
 - supported English and Korean
 
-1. Sign in
+### Sign in
 
 - 아이디(이메일) 또는 비밀번호가 일치하지 않으면 Toast로 에러메시지 발생
 - 회원정보는 firebase의 Authentication을 불러옵니다.
@@ -33,7 +33,7 @@
 - 'GUEST LOGIN" 버튼을 클릭하면 로그인 없이 장바구니로 이동 가능 (게스트 데모 계정으로 사용)
 - "CREATE ACCOUNT" 버튼을 클릭하면 회원가입 페이지로 이동
 
-2. Sign up
+### Sign up
 
 - ID는 이메일 형식으로 사용
 - 비밀번호는 문자, 숫자, 특수문자를 모두 포함한 8~15자로 구성해야하며 유효성 검사를 통해 오류메시지를 보여줍니다.
@@ -43,7 +43,7 @@
 - "VIEW PRIVACY" 버튼을 누르면 dialog 창으로 개인정보정책 열람이 가능합니다.
 
 
-3. Shopping cart
+### Shopping cart
 
 - 담은 상품의 이미지와 상품명을 리스트 형태로 보여줍니다.
 - 상품 옆에 있는 "X" 아이콘을 누르면 해당 상품이 삭제됩니다.
